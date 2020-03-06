@@ -1,0 +1,21 @@
+.home-e1{
+    background-image: url(../images/commercy.jpg);
+    background-size: cover;
+    background-position: center 80%;
+    height: 350px;
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.home-e1>h1 {
+    margin: auto;
+    color: white;
+}
+
+.navbar-link{
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 20px;
+}
