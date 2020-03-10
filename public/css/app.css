@@ -19,3 +19,18 @@
     padding-right: 10px;
     font-size: 20px;
 }
+
+.produit-title{
+    padding-top: 100px;
+}
+
+.card-element{
+    color: white;
+}
+
+.hr-element{
+	background-color: white;
+    align-self: center;
+    height: 1px;
+    width: 75%;
+}

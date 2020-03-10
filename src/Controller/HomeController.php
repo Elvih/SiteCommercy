@@ -8,14 +8,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class HomeController extends AbstractController
 {
 
+
     /**
-     * @Route("/Accueil", name="home")
+     * @Route("/", name="home")
      * @return Response
      */
     public function index(): Response
     {
+        setlocale(LC_ALL, 'fr');
+        $date_string = strftime('%A %d %B %Y');        
+        $heure = strftime('%X');
+
         return $this->render('pages/home.html.twig',[
-            'current_menu' => 'home'
+            'current_menu' => 'home',
+            'today' => $date_string,
+            'heure' => $heure
         ]);
     }
     

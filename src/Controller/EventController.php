@@ -9,7 +9,7 @@ class EventController extends AbstractController
 {
 
     /**
-     * @Route("/Evenement", name="event")
+     * @Route("/Festivite", name="event")
      * @return Response
      */
     public function index(): Response
