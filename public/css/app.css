@@ -34,3 +34,22 @@
     height: 1px;
     width: 75%;
 }
+
+.mapboxgl-popup-content{
+    min-width: 265px !important;
+}
+
+#menu {
+    position: absolute;
+    z-index: 1 ;
+    background: rgb(49, 42, 42);
+    padding: 10px;
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+}
+
+#map {
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+}
