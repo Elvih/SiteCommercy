@@ -5,7 +5,6 @@ use App\Entity\Contact;
 use App\Form\ContactType;
 use App\Notification\ContactNotification;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,17 +19,16 @@ class ContactController extends AbstractController
     public function index(Request $request,ContactNotification $notification): Response
     {
         $contact = new Contact();
-        $form = $this->createForm(ContactType::class,$contact);
+        $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
         
         
         if ($form->isSubmitted() && $form->isValid()) {
-            $notification->notify($contact);
+            $notification->notify($contact);              
             $this->addFlash('success', 'Votre email à bien été envoyé');     
-            return $this->redirectToRoute('contact');
-                      
+            return $this->redirectToRoute('contact');                    
         }
-
+        
 
         return $this->render('pages/contact.html.twig',[
             'current_menu' => 'contact',

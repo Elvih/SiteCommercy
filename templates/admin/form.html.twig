@@ -1,0 +1,25 @@
+
+{{ form_start(form) }}
+<div class="row">
+    <div class="col-md-4"> {{ form_row(form.Nom) }}</div>
+</div>
+<div class="row">
+    <div class="col-md-8"> {{ form_row(form.Description) }}</div>
+</div>
+<div class="row">
+    <div class="col-md-8"> {{ form_row(form.Type) }}</div>
+</div>
+<div class="row">
+    <div class="col-md-8"> {{ form_row(form.Datedebut) }}</div>
+</div>
+<div class="row">
+    <div class="col-md-8"> {{ form_row(form.Datefin) }}</div>
+</div>
+
+<div class="row">
+    <div class="col-md-2"> {{ form_row(form.Fichierimage) }}</div>
+
+</div>
+    {{ form_rest(form)}}
+    <button class="btn btn-primary">{{ button | default('Enregistrer') }}</button>
+{{ form_end(form) }}
