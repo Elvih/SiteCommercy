@@ -2,15 +2,15 @@
 
 namespace App\Form;
 
-use App\Entity\Evenement;
 use App\Entity\Type;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Entity\Evenement;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 
 
@@ -25,8 +25,12 @@ class EvenementType extends AbstractType
                 'class' =>Type::class,
                 'choice_label' =>'Nom'
             ])
-            ->add('Datedebut',DateTimeType::class)
-            ->add('Datefin',DateTimeType::class)
+            ->add('Datedebut',DateType::class,[
+                'format'=>'d-M-y'
+            ])
+            ->add('Datefin',DateType::class,[
+                'format'=>'d-M-y'
+            ])
             ->add('Fichierimage',FileType::class,[
                 'required' =>false
             ])

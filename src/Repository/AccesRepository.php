@@ -3,8 +3,11 @@
 namespace App\Repository;
 
 use App\Entity\Acces;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
+use App\Entity\EvenementSearch;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Acces|null find($id, $lockMode = null, $lockVersion = null)
@@ -35,6 +38,24 @@ class AccesRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findAllVisibleQuery(EvenementSearch $search): Query
+    {
+        $query =  $this->findVisibleQuery();
+        if ($search->getType()) {            
+                $query = $query
+                    ->andWhere("p.Type <= Type")
+                    ->setParameter("Type", $search);
+        }
+        
+        return $query->getQuery();
+    }
+
+    private function findVisibleQuery(): QueryBuilder
+    {
+        return $this->createQueryBuilder('p');
+    }
+
 
     /*
     public function findOneBySomeField($value): ?Acces
