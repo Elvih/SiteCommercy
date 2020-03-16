@@ -8,15 +8,21 @@
             <div class="mt-3 ml-4">
                 <div class="row flex text-center justify-content-center w-100">
                     <div class="w-100 mt-5">
-                        <div class="card flex-row flex-wrap">
+                        <div class="card flex-row flex-wrap border-dark">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-2 d-flex justify-content-start">
-                                        <img src="/images/Logo.jpg" alt="Card image cap" style="width: 100px;">
+                                    {% if Evenement.fichierImage %}
+                                        <img src="{{ vich_uploader_asset(Evenement, 'imageFile') | imagine_filter('thumb') }}" alt="Card image cap" style="width:100px;height:auto;">
+                                    {% endif %}                                      
                                     </div>
                                     <div class="col-10">
-                                        <h5 class="card-title">
-                                            {{ Evenement.Nom}} le {{Evenement.Datedebut|date('d/m/Y')}}
+                                        <h5 class="card-title">                                           
+                                            {% if Evenement.Datefin < Evenement.Datedebut %}
+                                                {{ Evenement.Nom}} le {{Evenement.Datedebut|date('d/m/Y')}}
+                                            {% else %}
+                                                {{ Evenement.Nom}} du {{Evenement.Datedebut|date('d/m/Y')}} au  {{Evenement.Datefin|date('d/m/Y')}}
+                                            {% endif %}                                            
                                         </h5>
                                         <p class="card-text pt-2">{{ Evenement.Description}}</p>
                                     </div>
@@ -55,10 +61,10 @@
                         <p class="card-text mt-4">Samedi : 9h - 12h</p>
                     </div>              
             </div>
-        </aside>
+        </aside> 
     </div>
     <footer>
-        test
+        
     </footer>
 </div>
 

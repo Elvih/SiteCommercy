@@ -31,7 +31,7 @@ class EvenementType extends AbstractType
             ->add('Datefin',DateType::class,[
                 'format'=>'d-M-y'
             ])
-            ->add('Fichierimage',FileType::class,[
+            ->add('imageFile',FileType::class,[
                 'required' =>false
             ])
 

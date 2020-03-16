@@ -37,7 +37,7 @@ class EvenementRepository extends ServiceEntityRepository
     }
     */
 
-        /**
+    /**
     * @return Evenement[]
     */
     public function findLatest(): array
@@ -48,9 +48,40 @@ class EvenementRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+
+
     private function findVisibleQuery(): QueryBuilder
     {
         return $this->createQueryBuilder('p');
+    }
+
+    public function findFestivite()
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.Type = 1')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
+    }
+
+
+    public function findActualite()
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.Type = 2')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
+    }
+
+
+    public function findEcole()
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.Type = 3')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
     }
 
 
@@ -65,4 +96,7 @@ class EvenementRepository extends ServiceEntityRepository
         ;
     }
     */
+
+
+
 }

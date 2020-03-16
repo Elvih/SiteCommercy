@@ -2,10 +2,15 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert; 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EvenementRepository")
+ * @Vich\Uploadable()
  */
 class Evenement
 {
@@ -15,6 +20,13 @@ class Evenement
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @var File|null
+     * @Assert\Image(mimeTypes="image/jpeg")
+     * @Vich\UploadableField(mapping="event_image", fileNameProperty="fichierImage")
+     */
+    private $imageFile;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -37,15 +49,22 @@ class Evenement
     private $Date_fin;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string|null
+     * @ORM\Column(type="string", length=255)
      */
-    private $Fichier_image;
+    private $fichierImage;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Type", inversedBy="evenements")
      * @ORM\JoinColumn(nullable=false)
      */
     private $Type;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @var \Datetime|null
+     */
+    private $updated_at;
 
     public function getId(): ?int
     {
@@ -100,17 +119,6 @@ class Evenement
         return $this;
     }
 
-    public function getFichierImage(): ?string
-    {
-        return $this->Fichier_image;
-    }
-
-    public function setFichierImage(?string $Fichier_image): self
-    {
-        $this->Fichier_image = $Fichier_image;
-
-        return $this;
-    }
 
     public function getType(): ?Type
     {
@@ -120,6 +128,68 @@ class Evenement
     public function setType(?Type $Type): self
     {
         $this->Type = $Type;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of imageFile
+     *
+     * @return  File|null
+     */ 
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * Set the value of imageFile
+     *
+     * @param  File|null  $imageFile
+     *
+     * @return  Evenement
+     */ 
+    public function setImageFile(?File $imageFile): Evenement
+    {
+        $this->imageFile = $imageFile;
+        if ($this->imageFile instanceof UploadedFile) {
+            $this->updated_at = new \DateTime('now');
+        }
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    {
+        $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of fichierImage
+     *
+     * @return  string|null
+     */ 
+    public function getFichierImage()
+    {
+        return $this->fichierImage;
+    }
+
+    /**
+     * Set the value of fichierImage
+     *
+     * @param  string|null  $fichierImage
+     *
+     * @return  self
+     */ 
+    public function setFichierImage($fichierImage)
+    {
+        $this->fichierImage = $fichierImage;
 
         return $this;
     }
