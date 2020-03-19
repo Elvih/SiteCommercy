@@ -12,7 +12,11 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-2 d-flex justify-content-start">
-                                        <img src="/images/Logo.jpg" alt="Card image cap" style="width: 100px;">
+                                    {% if Evenement.fichierImage %}
+                                        <img src="{{ vich_uploader_asset(Evenement, 'imageFile') | imagine_filter('thumb') }}" alt="Card image cap" style="width:150px;height:auto;">
+                                        {% else %}
+                                        <img src="{{ '/images/events/empty.jpg' | imagine_filter('thumb') }}" alt="Card image cap" style="width:150px;height:auto;">
+                                    {% endif %}          
                                     </div>
                                     <div class="col-10">
                                         <h5 class="card-title">                                           

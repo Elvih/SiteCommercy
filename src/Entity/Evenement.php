@@ -119,7 +119,6 @@ class Evenement
         return $this;
     }
 
-
     public function getType(): ?Type
     {
         return $this->Type;
