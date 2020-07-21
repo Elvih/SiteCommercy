@@ -28,7 +28,7 @@ class AdminEvenementController extends AbstractController{
 
     
     /**
-     * @Route("/admin", name="index")
+     * @Route("/admin", name="admin")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index(Request $request):Response
