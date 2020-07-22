@@ -53,7 +53,7 @@
           </li>
           <li class="nav-item navbar-link">
             <a class="nav-link {% if  current_menu is defined and current_menu == 'login'%}active{% endif %}"
-              href="{{ path('admin') }}">Connexion</a>
+              href="{{ path('admin') }}">{% if app.user %}Administration{% else %}Connexion{% endif %}</a>
           </li>
         </ul>
         {% if app.user %}
