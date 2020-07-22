@@ -59,7 +59,7 @@ class AdminEvenementController extends AbstractController{
             $this->em->persist($evenements);
             $this->em->flush();
             $this->addFlash('success','Bien créer avec succès');
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('admin');
         }
                 return $this->render('admin/new.html.twig',[
             'form' =>$form->createView()
@@ -81,7 +81,7 @@ class AdminEvenementController extends AbstractController{
         if($form->isSubmitted() && $form ->isValid() ){
             $this->em->flush();
             $this->addFlash('success','Bien modifier avec succès');
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('admin');
         }
                 return $this->render('admin/edit.html.twig',[
             'form' =>$form->createView(),
@@ -101,7 +101,7 @@ class AdminEvenementController extends AbstractController{
             $this->em->flush();
             $this->addFlash('success','Bien supprimer avec succès');  
             }
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('admin');
     }
 
 }
